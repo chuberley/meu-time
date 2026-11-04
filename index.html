@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#081c2f">
+  <title>Meu time · EPI-USE Brasil</title>
+  <link rel="icon" href="assets/epiuse-logo.png">
+  <link rel="stylesheet" href="assets/fonts/fonts.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <svg class="icon-sprite" aria-hidden="true">
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="6.5" height="6.5" rx="1.6"/><rect x="14" y="3.5" width="6.5" height="6.5" rx="1.6"/><rect x="3.5" y="14" width="6.5" height="6.5" rx="1.6"/><rect x="14" y="14" width="6.5" height="6.5" rx="1.6"/></symbol>
+    <symbol id="i-map" viewBox="0 0 24 24"><path d="M9 4.5 3.8 6.7v12.8L9 17.3l6 2.2 5.2-2.2V4.5L15 6.7 9 4.5Z"/><path d="M9 4.5v12.8M15 6.7v12.8"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 19.5v-1.7a3.8 3.8 0 0 0-3.8-3.8H6.8A3.8 3.8 0 0 0 3 17.8v1.7"/><circle cx="9.5" cy="7.5" r="3.5"/><path d="M21 19.5v-1.7a3.8 3.8 0 0 0-2.9-3.7M15.5 4.1a3.5 3.5 0 0 1 0 6.8"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.5 14.3A8.5 8.5 0 0 1 9.7 3.5a8.5 8.5 0 1 0 10.8 10.8Z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.2 4.2"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M7.5 10.5 12 15l4.5-4.5M4 20.5h16"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10.3c0 5.2-8 11.2-8 11.2s-8-6-8-11.2a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10.3" r="2.8"/></symbol>
+    <symbol id="i-building" viewBox="0 0 24 24"><path d="M4.5 20.5V5.2a1.7 1.7 0 0 1 1.7-1.7h7.6a1.7 1.7 0 0 1 1.7 1.7v15.3M15.5 9.5h2.8a1.7 1.7 0 0 1 1.7 1.7v9.3M2.5 20.5h19"/><path d="M8 7.5h3M8 11h3M8 14.5h3"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3.5 9.5h17M3.5 14.5h17M12 3c2.4 2.5 3.6 5.5 3.6 9s-1.2 6.5-3.6 9c-2.4-2.5-3.6-5.5-3.6-9S9.6 5.5 12 3Z"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5M3 16l9 5 9-5"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24"><path d="M3.5 11a8.5 8.5 0 1 1 2.5 6"/><path d="M3.5 5v6h6"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 4v15M6 13l6 6 6-6"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.2"/><path d="m4 6.5 8 6 8-6"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M8 3v4M16 3v4M3.5 9.5h17"/></symbol>
+    <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3" y="7.5" width="18" height="13" rx="2"/><path d="M8.5 7.5V5.7A1.7 1.7 0 0 1 10.2 4h3.6a1.7 1.7 0 0 1 1.7 1.7v1.8M3 12.5h18"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 10.5V17M12 7.2v.2"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></symbol>
+  </svg>
+
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <img src="assets/epiuse-logo.png" alt="EPI-USE">
+        <div class="brand-tagline"><em>my</em><span>SEU ESPAÇO DE TRABALHO</span></div>
+      </div>
+
+      <nav class="nav" aria-label="Navegação principal">
+        <a class="nav-item active" href="#top">
+          <span class="nav-icon"><svg><use href="#i-grid"/></svg></span>
+          <span><strong>Meu time</strong><small>Seu time em um só lugar</small></span>
+        </a>
+        <a class="nav-item" href="#mapa">
+          <span class="nav-icon"><svg><use href="#i-map"/></svg></span>
+          <span><strong>Mapa</strong><small>Distribuição geográfica</small></span>
+        </a>
+        <a class="nav-item" href="#pessoas">
+          <span class="nav-icon"><svg><use href="#i-users"/></svg></span>
+          <span><strong>Pessoas</strong><small>Lista e detalhes do time</small></span>
+        </a>
+      </nav>
+
+      <div class="sidebar-note">
+        <span class="pulse-dot"></span>
+        <span>Dados internos · EPI-USE Brasil</span>
+      </div>
+      <div class="sidebar-footer">
+        <span class="status-dot"></span>
+        <span>Acesso corporativo EPI-USE</span>
+      </div>
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay" hidden></div>
+
+    <div class="main">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="icon-btn menu-btn" id="menuBtn" aria-label="Abrir menu">
+            <svg><use href="#i-menu"/></svg>
+          </button>
+          <img class="topbar-logo" src="assets/epiuse-logo.png" alt="EPI-USE">
+          <div class="topbar-divider"></div>
+          <span class="topbar-title">Meu time</span>
+        </div>
+        <div class="topbar-right">
+          <button class="icon-btn theme-btn" id="themeBtn" aria-label="Alternar tema">
+            <svg><use href="#i-moon" id="themeIcon"/></svg>
+          </button>
+          <div class="profile-wrap">
+            <button class="profile" id="profileBtn" aria-haspopup="true" aria-expanded="false">
+              <span class="avatar avatar-sm" id="headerAvatar">AM</span>
+              <span class="profile-text">
+                <strong id="headerName">Adriano Martins</strong>
+                <small id="headerRole">Pre Sales Service Head</small>
+              </span>
+              <svg class="profile-chevron"><use href="#i-chevron-down"/></svg>
+            </button>
+            <div class="profile-popover" id="profilePopover" hidden>
+              <div class="popover-eyebrow">SESSÃO DE DEMONSTRAÇÃO</div>
+              <p>Você está visualizando o painel como <strong id="popoverName">Adriano Martins</strong>.</p>
+              <button class="btn btn-soft btn-block" id="popoverChange">Alterar gestor</button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="content" id="top">
+        <div class="page-head">
+          <div>
+            <div class="eyebrow">EPI-USE BRASIL</div>
+            <h1>Meu time</h1>
+            <p>Uma visão consolidada do seu time, por centro de responsabilidade e geografia.</p>
+          </div>
+          <div class="page-head-meta">
+            <span class="status-dot"></span>
+            <span>Snapshot <strong id="snapshotLabel">03/08/2026</strong></span>
+          </div>
+        </div>
+
+        <section class="hero card">
+          <div class="hero-accent"></div>
+          <div class="hero-body">
+            <div class="eyebrow">MY EPI-USE · PEOPLE</div>
+            <h2 id="heroGreeting">Olá, Adriano.</h2>
+            <p id="heroSub">Seu time em um só lugar. Explore o mapa, filtre por centro de responsabilidade e conheça cada pessoa.</p>
+            <div class="hero-tags">
+              <span class="tag" id="heroRole">Pre Sales Service Head</span>
+              <span class="tag tag-soft" id="heroCount">6 pessoas</span>
+              <div class="avatar-stack" id="heroAvatars"></div>
+              <span class="hero-caption" id="heroCaption">em 6 cidades</span>
+            </div>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <svg viewBox="0 0 190 140" fill="none">
+              <rect x="14" y="18" width="42" height="42" rx="10" fill="var(--hero-art-1)"/>
+              <rect x="64" y="9" width="42" height="42" rx="10" fill="var(--hero-art-2)"/>
+              <rect x="114" y="26" width="42" height="42" rx="10" fill="var(--hero-art-1)"/>
+              <path d="M56 39h8M106 47h8M85 51v10" stroke="var(--hero-art-line)" stroke-width="1.5"/>
+              <rect x="118" y="82" width="38" height="38" rx="9" fill="var(--hero-art-3)"/>
+              <path d="M130 101h14m-5-5 5 5-5 5" stroke="var(--teal)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="26" y="82" width="26" height="26" rx="7" fill="var(--hero-art-2)"/>
+            </svg>
+          </div>
+        </section>
+
+        <section class="filters card" aria-label="Filtros do time">
+          <div class="field field-manager">
+            <label for="managerSelect">Gestor</label>
+            <div class="select-wrap">
+              <select id="managerSelect"></select>
+              <svg><use href="#i-chevron-down"/></svg>
+            </div>
+          </div>
+          <div class="field field-lob">
+            <label for="lobSelect">Centro de responsabilidade</label>
+            <div class="select-wrap">
+              <select id="lobSelect"></select>
+              <svg><use href="#i-chevron-down"/></svg>
+            </div>
+          </div>
+          <div class="field field-scope" id="scopeField">
+            <label>Escopo do time</label>
+            <div class="segmented" role="group" aria-label="Escopo do time">
+              <button type="button" data-scope="full" class="active">Completo <span id="scopeFullCount">6</span></button>
+              <button type="button" data-scope="direct">Direto <span id="scopeDirectCount">6</span></button>
+            </div>
+          </div>
+          <button class="btn btn-ghost reset-btn" id="resetBtn" type="button">
+            <svg><use href="#i-reset"/></svg>
+            <span>Limpar</span>
+          </button>
+        </section>
+
+        <section class="kpis" aria-label="Indicadores do time">
+          <article class="kpi card">
+            <div class="kpi-top"><span class="kpi-icon"><svg><use href="#i-users"/></svg></span><span class="kpi-chip" id="kpiPeopleChip">time</span></div>
+            <div class="kpi-value" id="kpiPeople" data-value="0">0</div>
+            <div class="kpi-label">Colaboradores</div>
+            <div class="kpi-sub" id="kpiPeopleSub">no recorte atual</div>
+          </article>
+          <article class="kpi card">
+            <div class="kpi-top"><span class="kpi-icon"><svg><use href="#i-pin"/></svg></span><span class="kpi-chip">geo</span></div>
+            <div class="kpi-value" id="kpiCities" data-value="0">0</div>
+            <div class="kpi-label">Cidades</div>
+            <div class="kpi-sub" id="kpiCitiesSub">com localização</div>
+          </article>
+          <article class="kpi card">
+            <div class="kpi-top"><span class="kpi-icon"><svg><use href="#i-building"/></svg></span><span class="kpi-chip">UF</span></div>
+            <div class="kpi-value" id="kpiStates" data-value="0">0</div>
+            <div class="kpi-label">Estados</div>
+            <div class="kpi-sub" id="kpiStatesSub">distribuídos pelo país</div>
+          </article>
+          <article class="kpi card">
+            <div class="kpi-top"><span class="kpi-icon"><svg><use href="#i-globe"/></svg></span><span class="kpi-chip">BR</span></div>
+            <div class="kpi-value" id="kpiRegions" data-value="0">0</div>
+            <div class="kpi-label">Regiões</div>
+            <div class="kpi-sub" id="kpiRegionsSub">de 5 regiões</div>
+          </article>
+          <article class="kpi card">
+            <div class="kpi-top"><span class="kpi-icon"><svg><use href="#i-layers"/></svg></span><span class="kpi-chip">LOB</span></div>
+            <div class="kpi-value" id="kpiLobs" data-value="0">0</div>
+            <div class="kpi-label">Centros de resp.</div>
+            <div class="kpi-sub" id="kpiLobsSub">no recorte atual</div>
+          </article>
+        </section>
+
+        <section class="main-grid">
+          <section class="card map-card" id="mapa">
+            <header class="card-head map-head">
+              <div class="card-title-group">
+                <div class="eyebrow">GEOGRAFIA</div>
+                <h3>Distribuição no Brasil</h3>
+                <p>Cada bolha representa uma cidade. Clique para explorar por região, estado ou cidade.</p>
+              </div>
+              <div class="map-actions">
+                <div class="breadcrumb" id="mapBreadcrumb"></div>
+                <div class="zoom-controls" aria-label="Controles do mapa">
+                  <button type="button" id="zoomIn" aria-label="Aproximar"><svg><use href="#i-plus"/></svg></button>
+                  <button type="button" id="zoomOut" aria-label="Afastar"><svg><use href="#i-minus"/></svg></button>
+                  <button type="button" id="zoomReset" aria-label="Voltar ao Brasil"><svg><use href="#i-target"/></svg></button>
+                </div>
+              </div>
+            </header>
+
+            <div class="map-canvas" id="mapCanvas">
+              <svg id="brazilMap" viewBox="0 0 720 780" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Mapa do Brasil com a distribuição dos colaboradores"></svg>
+              <div class="map-tooltip" id="mapTooltip"></div>
+              <div class="map-note" id="mapNote"></div>
+              <div class="map-compass" aria-hidden="true"><span>N</span><i></i></div>
+              <div class="map-legend"><span class="legend-dot"></span>Bolha = nº de colaboradores</div>
+              <div class="map-empty" id="mapEmpty" hidden>
+                <svg><use href="#i-pin"/></svg>
+                <strong>Sem colaboradores mapeados</strong>
+                <span>Este recorte não possui localização no Brasil.</span>
+              </div>
+            </div>
+
+            <div class="region-strip">
+              <div class="region-chips" id="regionChips"></div>
+              <div class="map-meta" id="mapMeta"></div>
+            </div>
+
+            <footer class="map-footer">
+              <span id="mapDrillSummary"></span>
+              <button type="button" class="link-btn" id="mapSeePeople">Ver pessoas <svg><use href="#i-arrow-down"/></svg></button>
+            </footer>
+          </section>
+
+          <div class="side-stack">
+            <section class="card scatter-card">
+              <header class="card-head compact">
+                <div>
+                  <div class="eyebrow">DISPERSÃO</div>
+                  <h3>Colaboradores por estado</h3>
+                </div>
+                <span class="hint">escala log</span>
+              </header>
+              <div class="scatter-canvas" id="scatterCanvas">
+                <svg id="scatter" preserveAspectRatio="xMinYMin meet" role="img" aria-label="Dispersão de colaboradores por estado"></svg>
+                <div class="chart-tooltip" id="scatterTooltip"></div>
+              </div>
+              <footer class="scatter-foot">
+                <div class="scatter-legend" id="scatterLegend"></div>
+                <span id="scatterNote"></span>
+              </footer>
+            </section>
+
+            <section class="card cities-card">
+              <header class="card-head compact">
+                <div>
+                  <div class="eyebrow">RANKING</div>
+                  <h3>Top cidades</h3>
+                </div>
+                <span class="hint" id="citiesHint"></span>
+              </header>
+              <ol class="city-list" id="cityList"></ol>
+            </section>
+          </div>
+        </section>
+
+        <section class="card people-card" id="pessoas">
+          <header class="people-head">
+            <div class="people-title">
+              <div class="eyebrow">PESSOAS</div>
+              <h3><span id="peopleTitle">Pessoas do time</span> <span class="count-badge" id="peopleCount">0</span></h3>
+              <p id="peopleSub"></p>
+            </div>
+            <div class="people-tools">
+              <div class="search-box">
+                <svg><use href="#i-search"/></svg>
+                <input id="searchInput" type="search" placeholder="Buscar por nome, cargo ou cidade" autocomplete="off" aria-label="Buscar pessoas">
+                <button type="button" class="search-clear" id="searchClear" aria-label="Limpar busca" hidden><svg><use href="#i-x"/></svg></button>
+              </div>
+              <div class="select-wrap mini">
+                <select id="sortSelect" aria-label="Ordenar pessoas">
+                  <option value="name">Nome (A–Z)</option>
+                  <option value="city">Cidade (A–Z)</option>
+                  <option value="tenure">Mais tempo de casa</option>
+                  <option value="role">Cargo (A–Z)</option>
+                </select>
+                <svg><use href="#i-chevron-down"/></svg>
+              </div>
+              <button class="btn btn-ghost" id="exportBtn" type="button">
+                <svg><use href="#i-download"/></svg>
+                <span>CSV</span>
+              </button>
+            </div>
+          </header>
+
+          <div class="active-filters" id="activeFilters"></div>
+
+          <div class="table-scroll">
+            <table class="people-table">
+              <thead>
+                <tr>
+                  <th>Colaborador</th>
+                  <th>Centro de responsabilidade</th>
+                  <th>Localização</th>
+                  <th>Tempo de casa</th>
+                  <th>Gestor</th>
+                  <th><span class="sr-only">Ações</span></th>
+                </tr>
+              </thead>
+              <tbody id="peopleBody"></tbody>
+            </table>
+          </div>
+
+          <div class="empty-state" id="emptyState" hidden>
+            <div class="empty-icon"><svg><use href="#i-search"/></svg></div>
+            <strong>Nenhum colaborador encontrado</strong>
+            <span>Ajuste os filtros ou limpe a busca para ver o time completo.</span>
+            <button class="btn btn-soft" id="emptyReset" type="button">Limpar filtros</button>
+          </div>
+
+          <footer class="people-foot">
+            <span id="peopleFootNote"></span>
+            <button type="button" class="btn btn-ghost" id="loadMore" hidden>Mostrar mais</button>
+          </footer>
+        </section>
+
+        <footer class="app-footer">
+          <span>Dados internos EPI-USE · Snapshot <span id="footerSnapshot">03/08/2026</span></span>
+          <span id="footerNote">446 colaboradores ativos · 6 contas administrativas e 1 desligado excluídos.</span>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <div class="drawer-backdrop" id="drawerBackdrop" hidden></div>
+  <aside class="drawer" id="drawer" hidden aria-modal="true" role="dialog" aria-label="Detalhes do colaborador">
+    <button type="button" class="drawer-close" id="drawerClose" aria-label="Fechar"><svg><use href="#i-x"/></svg></button>
+    <div class="drawer-content" id="drawerContent"></div>
+  </aside>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/geo.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
