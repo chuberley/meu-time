@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu time · EPI-USE Brasil</title>
+  <link rel="preload" href="assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/fonts/fonts.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f4f5f7;
+      --surface: #ffffff;
+      --ink: #111827;
+      --ink-2: #374151;
+      --muted: #6b7280;
+      --muted-2: #9ca3af;
+      --line: #e5e7eb;
+      --teal: #0d9488;
+      --teal-dark: #0f766e;
+      --teal-soft: #ccfbf1;
+      --red: #ef4444;
+      --radius: 14px;
+      --shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 16px rgba(0,0,0,.06);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f1117;
+        --surface: #1a1d27;
+        --ink: #f3f4f6;
+        --ink-2: #d1d5db;
+        --muted: #9ca3af;
+        --muted-2: #6b7280;
+        --line: #2d3141;
+        --teal-soft: #042f2e;
+      }
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100dvh;
+      padding: 24px;
+    }
+
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      width: 100%;
+      max-width: 420px;
+      padding: 40px 36px 36px;
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+
+    .logo-wrap img {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+      filter: invert(37%) sepia(96%) saturate(534%) hue-rotate(144deg) brightness(90%);
+    }
+
+    .logo-wrap span {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      color: var(--teal);
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-family: 'Manrope', 'Inter', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 28px;
+    }
+
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .03em;
+      color: var(--ink-2);
+      margin-bottom: 6px;
+    }
+
+    input[type="email"] {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid var(--line);
+      border-radius: 9px;
+      font-family: inherit;
+      font-size: 14px;
+      background: var(--bg);
+      color: var(--ink);
+      outline: none;
+      transition: border-color .15s;
+    }
+
+    input[type="email"]:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--teal) 15%, transparent);
+    }
+
+    input[type="email"]::placeholder { color: var(--muted-2); }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      margin-top: 16px;
+      padding: 12px 20px;
+      background: var(--teal);
+      color: #fff;
+      border: none;
+      border-radius: 9px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .15s, transform .1s;
+    }
+
+    .btn:hover { background: var(--teal-dark); }
+    .btn:active { transform: scale(.98); }
+    .btn:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+
+    .spinner {
+      width: 16px; height: 16px;
+      border: 2px solid rgba(255,255,255,.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      display: none;
+    }
+
+    .btn.loading .spinner { display: block; }
+    .btn.loading .btn-text { display: none; }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .msg {
+      margin-top: 16px;
+      padding: 12px 14px;
+      border-radius: 9px;
+      font-size: 13px;
+      line-height: 1.5;
+      display: none;
+    }
+
+    .msg.success {
+      background: var(--teal-soft);
+      color: var(--teal-dark);
+      display: block;
+    }
+
+    .msg.error {
+      background: #fef2f2;
+      color: var(--red);
+      display: block;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .msg.error { background: #2d1515; }
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--line);
+      margin: 28px 0 20px;
+    }
+
+    .footer-note {
+      font-size: 11.5px;
+      color: var(--muted-2);
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    /* success state */
+    .success-view { display: none; text-align: center; }
+    .success-view.show { display: block; }
+    .form-view.hide { display: none; }
+
+    .check-icon {
+      width: 52px; height: 52px;
+      background: var(--teal-soft);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    .check-icon svg {
+      width: 26px; height: 26px;
+      stroke: var(--teal);
+      stroke-width: 2.5;
+      fill: none;
+    }
+
+    .success-title {
+      font-family: 'Manrope', sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .success-sub {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .success-email {
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .resend-btn {
+      background: none;
+      border: none;
+      color: var(--teal);
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 20px;
+      padding: 4px 0;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo-wrap">
+      <img src="assets/epiuse-logo.png" alt="EPI-USE">
+      <span>EPI-USE Brasil</span>
+    </div>
+
+    <!-- Form view -->
+    <div class="form-view" id="formView">
+      <h1>Acesse seu time</h1>
+      <p class="subtitle">Digite seu e-mail corporativo. Vamos enviar um link de acesso direto — sem senha.</p>
+
+      <form id="loginForm" novalidate>
+        <label for="emailInput">E-mail corporativo</label>
+        <input type="email" id="emailInput" placeholder="seu.nome@epiuse.com.br" autocomplete="email" required>
+        <button type="submit" class="btn" id="submitBtn">
+          <span class="btn-text">Enviar link de acesso</span>
+          <span class="spinner"></span>
+        </button>
+      </form>
+
+      <div class="msg" id="msgBox"></div>
+
+      <hr class="divider">
+      <p class="footer-note">O acesso é restrito a gestores cadastrados.<br>Problemas? Fale com o time de RH.</p>
+    </div>
+
+    <!-- Success view -->
+    <div class="success-view" id="successView">
+      <div class="check-icon">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <p class="success-title">Link enviado!</p>
+      <p class="success-sub">Verifique sua caixa de entrada em<br><span class="success-email" id="successEmail"></span><br>e clique no link para acessar o dashboard.</p>
+      <button class="resend-btn" id="resendBtn">Reenviar link</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script>
+    // ── Config ────────────────────────────────────────────────────────────────
+    const SUPABASE_URL  = 'https://fkwanbbbhdtcouncqslf.supabase.co';
+    const SUPABASE_ANON = 'sb_publishable_zYq9l4KiCvlsjpcU047hlQ_g5v0syD4';
+
+    // E-mails autorizados (gestores da planilha)
+    const ALLOWED_EMAILS = new Set([
+      'adriana.crepaldi@epiuse.com.br',
+      'adriano.martins@epiuse.com.br',
+      'albertina.schroeder@epiuse.com.br',
+      'alexandre.ormigo@epiuse.com.br',
+      'anderson.silva@epiuse.com.br',
+      'andre.mancini@epiuse.com.br',
+      'andrea.sampaio@epiuse.com.br',
+      'angela.ferro@epiuse.com.br',
+      'bruce.gaiotto@epiuse.com.br',
+      'carlos.cardoso@epiuse.com.br',
+      'daniel.balado@stratview.com.br',
+      'daniel.jesus@epiuse.com.br',
+      'dayane.ferreira@epiuse.com.br',
+      'fabiana.farias@epiuse.com.br',
+      'gustavo.michelotto@epiuse.com.br',
+      'jonas.vieira@epiuse.com.br',
+      'juliana.catini@epiuse.com.br',
+      'julio.almeida@epiuse.com.br',
+      'kelly.falluh@epiuse.com.br',
+      'kelly.gaspar@epiuse.com.br',
+      'kleber.pestana@epiuse.com.br',
+      'luiz.archanjo@epiuse.com.br',
+      'marcelo.moreira@epiuse.com.br',
+      'marcos.silva@epiuse.com.br',
+      'mariana.torres@epiuse.com.br',
+      'paula.cester@epiuse.com.br',
+      'roberto.medeiros@epiuse.com.br',
+      'roseli.knysak@epiuse.com.br',
+      'ruda.costa@epiuse.com.br',
+      'tanner.castro@epiuse.com.br',
+      'thomaz.faria@epiuse.com.br',
+      'tiago.hioki@epiuse.com.br',
+      'tiago.moises@epiuse.com.br',
+      'vagner.tripodoro@epiuse.com.br',
+      'vinicius.santana@epiuse.com.br',
+      'wallace.santos@epiuse.com.br',
+      // admin — acessa como visão geral
+      'chuberley@gmail.com',
+    ]);
+
+    // ── Init ──────────────────────────────────────────────────────────────────
+    const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+
+    // Se já estiver autenticado, redireciona
+    (async () => {
+      const { data: { session } } = await sb.auth.getSession();
+      if (session) window.location.replace('index.html');
+    })();
+
+    // ── UI refs ───────────────────────────────────────────────────────────────
+    const form       = document.getElementById('loginForm');
+    const emailInput = document.getElementById('emailInput');
+    const submitBtn  = document.getElementById('submitBtn');
+    const msgBox     = document.getElementById('msgBox');
+    const formView   = document.getElementById('formView');
+    const successView = document.getElementById('successView');
+    const successEmail = document.getElementById('successEmail');
+    const resendBtn  = document.getElementById('resendBtn');
+
+    function showMsg(text, type) {
+      msgBox.textContent = text;
+      msgBox.className = `msg ${type}`;
+    }
+
+    function setLoading(on) {
+      submitBtn.disabled = on;
+      submitBtn.classList.toggle('loading', on);
+    }
+
+    async function sendMagicLink(email) {
+      setLoading(true);
+      msgBox.className = 'msg';
+
+      if (!ALLOWED_EMAILS.has(email.toLowerCase())) {
+        showMsg('E-mail não autorizado. O acesso é restrito a gestores cadastrados.', 'error');
+        setLoading(false);
+        return;
+      }
+
+      const { error } = await sb.auth.signInWithOtp({
+        email,
+        options: {
+          emailRedirectTo: `${location.origin.includes('localhost') || location.protocol === 'file:'
+            ? 'https://chuberley.github.io/meu-time/'
+            : window.location.origin + window.location.pathname.replace('login.html', '')}index.html`,
+        },
+      });
+
+      setLoading(false);
+
+      if (error) {
+        showMsg('Erro ao enviar o link. Tente novamente em instantes.', 'error');
+        return;
+      }
+
+      successEmail.textContent = email;
+      formView.classList.add('hide');
+      successView.classList.add('show');
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = emailInput.value.trim();
+      if (!email) { emailInput.focus(); return; }
+      await sendMagicLink(email);
+    });
+
+    resendBtn.addEventListener('click', () => {
+      formView.classList.remove('hide');
+      successView.classList.remove('show');
+      emailInput.value = successEmail.textContent;
+      emailInput.focus();
+    });
+  </script>
+</body>
+</html>

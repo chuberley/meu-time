@@ -6,6 +6,26 @@
   <meta name="theme-color" content="#081c2f">
   <title>Meu time · EPI-USE Brasil</title>
   <link rel="icon" href="assets/epiuse-logo.png">
+  <!-- Auth guard: redireciona para login.html se não autenticado -->
+  <script>
+    window.https://fkwanbbbhdtcouncqslf.supabase.co  = 'https://fkwanbbbhdtcouncqslf.supabase.co';
+    window.sb_publishable_zYq9l4KiCvlsjpcU047hlQ_g5v0syD4 = 'sb_publishable_zYq9l4KiCvlsjpcU047hlQ_g5v0syD4';
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script>
+    (async () => {
+      const sb = supabase.createClient(window.https://fkwanbbbhdtcouncqslf.supabase.co, window.sb_publishable_zYq9l4KiCvlsjpcU047hlQ_g5v0syD4);
+      // Supabase processa o magic link da URL automaticamente
+      const { data: { session } } = await sb.auth.getSession();
+      if (!session) {
+        window.location.replace('login.html');
+      } else {
+        // Expõe sessão e cliente para app.js
+        window.__SB__ = sb;
+        window.__SESSION__ = session;
+      }
+    })();
+  </script>
   <link rel="stylesheet" href="assets/fonts/fonts.css">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -98,9 +118,10 @@
               <svg class="profile-chevron"><use href="#i-chevron-down"/></svg>
             </button>
             <div class="profile-popover" id="profilePopover" hidden>
-              <div class="popover-eyebrow">SESSÃO DE DEMONSTRAÇÃO</div>
-              <p>Você está visualizando o painel como <strong id="popoverName">Adriano Martins</strong>.</p>
+              <div class="popover-eyebrow">SESSÃO ATIVA</div>
+              <p>Autenticado como <strong id="popoverName">—</strong>.</p>
               <button class="btn btn-soft btn-block" id="popoverChange">Alterar gestor</button>
+              <button class="btn btn-soft btn-block" id="logoutBtn" style="margin-top:6px;color:var(--red,#ef4444)">Sair</button>
             </div>
           </div>
         </div>

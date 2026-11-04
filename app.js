@@ -1883,5 +1883,39 @@
     }
   };
 
+  // ── Auth integration ────────────────────────────────────────────────────────
+  const initAuth = () => {
+    const sb      = window.__SB__;
+    const session = window.__SESSION__;
+    if (!sb || !session) return; // modo local sem auth
+
+    const userEmail = session.user?.email?.toLowerCase() || "";
+
+    // Auto-seleciona o gestor pelo e-mail autenticado
+    const matched = DATA.managers.find(
+      (m) => m.email?.toLowerCase() === userEmail,
+    );
+    if (matched) {
+      state.managerId = matched.id;
+      populateManagerSelect();
+      populateLobSelect();
+      renderAll();
+    }
+
+    // Logout
+    const logoutBtn = document.getElementById("logoutBtn");
+    if (logoutBtn) {
+      logoutBtn.addEventListener("click", async () => {
+        await sb.auth.signOut();
+        window.location.replace("login.html");
+      });
+    }
+
+    // Atualiza eyebrow do popover
+    const eyebrow = document.querySelector(".popover-eyebrow");
+    if (eyebrow) eyebrow.textContent = userEmail;
+  };
+
   init();
+  initAuth();
 })();
